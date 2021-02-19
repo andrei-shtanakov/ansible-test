@@ -1,0 +1,17 @@
+- hosts: ubuntu-server
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    user 
+  roles:
+   - nginx
+   - utils
+   - sysctl
+   - sshkey
+   - git
+  vars:
+    nginx_user: www-data

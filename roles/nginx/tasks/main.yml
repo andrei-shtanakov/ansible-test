@@ -1,0 +1,24 @@
+- name: Install Nginx Web Server on Debian Family
+  apt:
+    name=nginx
+    state=latest
+  when:
+    ansible_os_family == "Debian"
+  notify:
+    - nginx systemd
+- name: configure nginx
+  template: 
+    src: default.j2 
+    dest: /etc/nginx/sites-enabled/default
+  notify:
+    - restart nginx
+
+- name: make folder for app
+  file: 
+    path: /srv/web 
+    state: directory
+
+- name: create index page
+  template: 
+    src: index.html.j2 
+    dest: /var/www/index.html

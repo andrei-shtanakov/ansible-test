@@ -1,0 +1,7 @@
+- name: Install Wget, zsh, git
+  apt:
+    name=wget
+    state=latest
+    name=zsh
+    state=latest
+    name=git

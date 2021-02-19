@@ -1,0 +1,6 @@
+- name: Git checkout
+  ansible.builtin.git:
+    repo: 'https://github.com/andrei-shtanakov/singlpage.git'
+    dest: /var/www/single
+
+
