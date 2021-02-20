@@ -1,0 +1,45 @@
+.
+├── ansible.cfg
+├── group_vars
+│   └── test
+├── hosts
+├── play.yml
+├── README.md
+├── roles
+│   ├── epel
+│   │   └── tasks
+│   │       └── main.yml
+│   ├── git
+│   │   └── tasks
+│   │       └── main.yml
+│   ├── nginx
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   ├── templates
+│   │   │   ├── default.j2
+│   │   │   ├── index.html.j2
+│   │   │   ├── nginx.conf
+│   │   │   └── nginx_vhosts.conf
+│   │   └── vars
+│   │       └── main.yml
+│   ├── sshkey
+│   │   └── tasks
+│   │       ├── keys
+│   │       │   └── key1.pub
+│   │       └── main.yml
+│   ├── sysctl
+│   │   └── tasks
+│   │       ├── main.yml
+│   │       ├── scripts
+│   │       │   ├── somaxconn_change.sh
+│   │       │   └── sysctl_change.sh
+│   │       └── vars
+│   │           └── sysctlparam.yml
+│   └── utils
+│       └── tasks
+│           └── main.yml
+└── tree.txt
+
+20 directories, 22 files

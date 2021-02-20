@@ -1,0 +1,8 @@
+user@nginx-ubuntu:~$ cat /proc/sys/fs/file-max
+500000
+user@nginx-ubuntu:~$ cat /proc/sys/net/core/somaxconn
+128
+user@nginx-ubuntu:~$ cat /proc/sys/fs/file-max
+1204000
+user@nginx-ubuntu:~$ cat /proc/sys/net/core/somaxconn
+65535
