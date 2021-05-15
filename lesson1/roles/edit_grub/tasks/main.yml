@@ -1,0 +1,6 @@
+---
+# tasks file for edit_grub
+- name: copy file
+  ansible.builtin.fetch:
+    src: /etc/default/grub
+    dest: .

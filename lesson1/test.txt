@@ -1,0 +1,7 @@
+111 222 333 444
+555
+666
+777
+GRUB_CMDLINE_LINUX=="no_timer_check console=tty0 console=ttyS0,115200n8 elevator=noop"
+888 999 000
+1234567 890

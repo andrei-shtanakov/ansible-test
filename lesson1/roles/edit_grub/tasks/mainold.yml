@@ -1,0 +1,7 @@
+---
+- name: Ensure the default Apache port is 8080
+  ansible.builtin.lineinfile:
+    path: /home/vagrant/test.txt
+    regexp: '^GRUB_CMDLINE_LINUX="'
+    insertafter: '^#LGRUB_CMDLINE_LINUX="'
+    line: 67878759859 

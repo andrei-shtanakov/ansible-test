@@ -1,0 +1,6 @@
+---
+- hosts: nodes
+  become: yes
+  user: ansible
+  roles:
+    - add_users

@@ -1,0 +1,16 @@
+---
+# tasks file for apache_uninstall
+
+- package:
+    name: "httpd"
+    state: absent
+
+- name: Create a symbolic link
+  file:
+    path: /var/www/html/index.html
+    state: absent 
+
+
+- command: firewall-cmd --permanent --zone=public --remove-service=http
+  args:
+    warn: false

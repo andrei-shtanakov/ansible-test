@@ -1,0 +1,15 @@
+---
+# tasks file for add_users
+- name: Include passwords vars
+  include_vars:
+    file: passwords.yml
+    name: users
+- name: Create user, if it doesnt exist already
+  user:
+    name: "{{ item.value.name }}"
+    password: "{{ item.value.password }}"
+    comment: "{{ item.value.name }}@test.com"
+    create_home: yes
+    state: present
+    update_password: on_create
+  loop: "{{ lookup('dict', users) }}"

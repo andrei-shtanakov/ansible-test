@@ -1,0 +1,31 @@
+---
+- hosts: node1.example.com
+  vars:
+    grub_string: ""
+  become: yes
+  user: ansible
+  roles:
+    - edit_grub
+- hosts: localhost
+  become: yes
+  user: ansible
+  roles:
+    - local_parsing
+- hosts: node1.example.com
+  become: yes
+  user: ansible
+  roles:
+    - copy_str_node1
+- hosts: node1.example.com
+  become: yes
+  user: ansible
+  roles:
+    - write_grub
+#  - name: check net.ifnames=0
+#    lineinfile:
+#      #path: /etc/default/grub
+#      path: /home/vagrant/test.txt
+#      regexp: '^GRUB_CMDLINE_LINUX=.*net\.ifnames=0.*'
+#      regexp: '^GRUB_CMDLINE_LINUX='
+#      insertafter: 'GRUB_CMDLINE_LINUX='
+#      line: GRUB_CMDLINE_LINUX="no_timer_check console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 elevator=noop"

@@ -1,0 +1,10 @@
+---
+# tasks file for edit_grub
+  - name: check net.ifnames=0
+    lineinfile:
+      #path: /etc/default/grub
+      path: /home/vagrant/test.txt
+#      regexp: '^GRUB_CMDLINE_LINUX=.*net\.ifnames=0.*'
+      regexp: '^GRUB_CMDLINE_LINUX='
+      insertafter: 'GRUB_CMDLINE_LINUX='
+      line: GRUB_CMDLINE_LINUX="no_timer_check console=tty0 console=ttyS0,115200n8 net.ifnames=0 biosdevname=0 elevator=noop"

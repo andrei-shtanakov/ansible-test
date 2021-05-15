@@ -1,0 +1,6 @@
+---
+# tasks file for copy_str_node1
+- name: copy str to server
+  copy:
+    src: grub_file_str
+    dest: /home/ansible/grub_file_str

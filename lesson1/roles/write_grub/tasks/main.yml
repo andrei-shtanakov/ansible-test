@@ -1,0 +1,9 @@
+---
+# tasks file for write_grub
+- shell: cat /home/ansible/grub_file_str 
+  register: output 
+- ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    regexp: '^GRB_CMDLINE_LINUX='
+    #insertafter: '^#GRB_CMDLINE_LINUX='
+    line: "{{ output.stdout }}"

@@ -1,0 +1,26 @@
+---
+# tasks file for my_apache
+- package:
+    name: "httpd"
+    state: present
+- copy:
+    src: "index.html"
+    dest: "/var/www/html"
+- service:
+    name: "httpd"
+    state: started
+
+- command: service httpd status
+  args:
+    warn: false
+
+- service:
+    name: "firewalld"
+    state: started
+#- command: firewall-cmd --zone=public --add-service=http
+#  args:
+#    warn: false
+
+- command: firewall-cmd --zone=public --add-service=http --permanent
+  args:
+    warn: false

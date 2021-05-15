@@ -1,0 +1,9 @@
+---
+# tasks file for local_parsing
+- name: parsing
+  ansible.builtin.script:
+    cmd: ./parsing.py
+  register: res_str
+- debug:
+    msg="{{ res_str.stdout }}"
+- copy: content="{{ res_str.stdout }}" dest=grub_file_str
