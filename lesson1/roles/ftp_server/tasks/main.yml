@@ -1,0 +1,21 @@
+---
+# tasks file for ftp_server
+- name: Install FTP Server 
+  package:
+    name: "vsftpd"
+    state: present
+- name: vsftpd systemd
+  systemd:
+    name: vsftpd
+    enabled: yes
+    state: started
+#  notify:
+#    - vsftpd systemd
+
+#- name: configure vsftpd
+#  template: 
+#    src: default.j2 
+#    dest: /etc/nginx/sites-enabled/default
+#  notify:
+#    - restart vsftpd
+

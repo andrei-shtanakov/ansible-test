@@ -1,2 +1,4 @@
----
-# vars file for my_apache
+https:
+  name: https
+http:
+  name: http

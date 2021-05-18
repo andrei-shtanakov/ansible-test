@@ -1,2 +1,15 @@
 ---
-# handlers file for my_apache
+- name: restart apache
+  service:
+    name: "httpd"
+    state: reloaded
+
+- name: restart firewall
+  service:
+    name: "firewalld"
+    state: reloaded
+
+- name: enable apache
+  service:
+    name: "httpd"
+    enabled: yes

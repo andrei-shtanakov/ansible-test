@@ -4,6 +4,7 @@
   register: output 
 - ansible.builtin.lineinfile:
     path: /etc/default/grub
-    regexp: '^GRB_CMDLINE_LINUX='
-    #insertafter: '^#GRB_CMDLINE_LINUX='
+    regexp: '^GRUB_CMDLINE_LINUX='
+#    insertafter: '^#GRB_CMDLINE_LINUX='
+#    line: GRUB_CMDLINE_LINUX="no_timer_check console=tty0 console=ttyS0,115200n8 elevator=noop 1234 1234" 
     line: "{{ output.stdout }}"

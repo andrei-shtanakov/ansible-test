@@ -3,24 +3,48 @@
 - package:
     name: "httpd"
     state: present
-- copy:
-    src: "index.html"
-    dest: "/var/www/html"
+
 - service:
     name: "httpd"
     state: started
+  notify: enable apache
 
-- command: service httpd status
-  args:
-    warn: false
+#- service:
+#    name: "httpd"
+#    enabled: yes
 
-- service:
+
+- name: create index page
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+  notify: restart apache
+
+
+- name: Include servise vars
+  include_vars:
+    file: services.yml
+    name: services
+
+- name: start firewall
+  service:
     name: "firewalld"
     state: started
-#- command: firewall-cmd --zone=public --add-service=http
-#  args:
-#    warn: false
 
-- command: firewall-cmd --zone=public --add-service=http --permanent
+- name: enable firewall
+  service:
+    name: "firewalld"
+    enabled: yes
+
+#  notify: restart firewall
+
+- name: open ports
+  command: firewall-cmd --zone=public --add-service={{ item.value.name }} --permanent
+  args:
+    warn: false
+  loop: "{{ lookup('dict', services) }}"
+  notify: restart firewall
+
+- command: service httpd status
   args:
     warn: false
