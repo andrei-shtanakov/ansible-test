@@ -1,0 +1,32 @@
+---
+# tasks file ftp user property
+- name: set home dir
+  command: usermod -d /var/ftp/pub ftp
+  args:
+    warn: false
+
+- name: create upload dir
+  command: mkdir /var/ftp/pub/upload
+  args:
+    warn: false
+  ignore_errors: True
+
+- name: set user ftp as owner
+  command: chown ftp:ftp /var/ftp/pub/upload
+  args:
+    warn: false
+
+- name: ftp can write
+  command: chmod 774  /var/ftp/pub/upload
+  args:
+    warn: false
+
+- name: selinux property
+  command: setsebool -P ftpd_anon_write on
+  args:
+    warn: false
+
+- name: selinux anothe property
+  command: setsebool -P ftpd_full_access 1
+  args:
+    warn: false

@@ -5,7 +5,7 @@
     name: vsftpd
     enabled: yes
     state: started
-- name: vsftpd restart
+- name: restart vsftpd
   service:
     name=vsftpd
     state=restarted

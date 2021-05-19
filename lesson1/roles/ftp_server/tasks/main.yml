@@ -4,18 +4,53 @@
   package:
     name: "vsftpd"
     state: present
+
+- name: start FTP
+  service:
+    name: "vsftpd"
+    state: started
+- name: enable FTP
+  service:
+    name: "vsftpd"
+    enabled: yes
+
+- name: Include a play with ftp user
+  include: ftp_user_params.yml
+
+- name: create config file
+  template:
+    src: vsftpd.conf
+    dest: /etc/vsftpd/vsftpd.conf
+  notify: restart vsftpd
+
+- name: start firewall
+  service:
+    name: "firewalld"
+    state: started
+
+- name: enable firewall
+  service:
+    name: "firewalld"
+    enabled: yes
+
+- name: open ports
+  command: firewall-cmd --permanent --add-port=20-21/tcp
+  args:
+    warn: false
+
+- name: open passive ports
+  command: firewall-cmd --permanent --add-port=30000-31000/tcp
+  args:
+    warn: false
+
+- name: restart firewall
+  service:
+    name: "firewalld"
+    state: reloaded
+
 - name: vsftpd systemd
   systemd:
     name: vsftpd
     enabled: yes
     state: started
-#  notify:
-#    - vsftpd systemd
-
-#- name: configure vsftpd
-#  template: 
-#    src: default.j2 
-#    dest: /etc/nginx/sites-enabled/default
-#  notify:
-#    - restart vsftpd
 
